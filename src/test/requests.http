@@ -21,3 +21,7 @@ GET http://localhost:8080/api/employee
 GET http://localhost:8080/api/employee?id=10001
 
 ###
+
+GET http://localhost:8080/api2/employee/1
+
+###

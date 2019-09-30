@@ -39,6 +39,7 @@ public class EmployeesApiServlet extends HttpServlet {
             objectMapper.writeValue(resp.getWriter(), employee);
 
         } catch (NumberFormatException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             objectMapper.writeValue(resp.getWriter(),  Collections.singletonMap("error", "Invalid id"));
         }
     }
