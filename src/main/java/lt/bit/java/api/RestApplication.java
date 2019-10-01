@@ -13,6 +13,7 @@ public class RestApplication extends Application {
         Set<Class<?>> classes = new HashSet<>();
 
         classes.add(EmployeeService.class);
+        classes.add(LoginService.class);
         classes.add(ObjectMapperContextResolver.class);
 
         return classes;
