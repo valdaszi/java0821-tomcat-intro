@@ -1,9 +1,10 @@
 package lt.bit.java.api;
 
-
 import lt.bit.java.PersistenceUtil;
 import lt.bit.java.entities.Employee;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,9 +19,6 @@ import java.util.Collections;
 @Consumes(MediaType.APPLICATION_JSON)
 public class EmployeeService {
 
-    @Context
-    HttpServletRequest request;
-
     /**
      * Grazina darbuotoja pagal jo id
      * @param empNo darbuotojo id
@@ -28,12 +26,8 @@ public class EmployeeService {
      */
     @GET
     @Path("/{empNo}")
+    @Secure({"ADMIN","USER"})
     public Response getEmployeeById(@PathParam("empNo") int empNo) {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usr") == null) {
-            return Response.status(Response.Status.FORBIDDEN).build();
-        }
-
         EntityManager em = null;
         try {
             em = PersistenceUtil.getEntityManager();
@@ -54,6 +48,7 @@ public class EmployeeService {
 
     @DELETE
     @Path("/{empNo}")
+    @Secure("ADMIN")
     public Response deleteEmployeeById(@PathParam("empNo") int empNo) {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();
@@ -66,6 +61,7 @@ public class EmployeeService {
     }
 
     @POST
+    @Secure("ADMIN")
     public Response createEmployee(Employee employee) {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();
@@ -75,6 +71,7 @@ public class EmployeeService {
     }
 
     @PUT
+    @Secure("ADMIN")
     public Response updateEmployee(Employee employee) {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();

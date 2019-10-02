@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/employee/delete")
+@WebServlet(name = "Employee", urlPatterns = "/employee/delete")
 public class EmployeeDeleteServlet extends HttpServlet {
 
     @Override

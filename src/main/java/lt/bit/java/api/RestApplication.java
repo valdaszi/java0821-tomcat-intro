@@ -15,6 +15,7 @@ public class RestApplication extends Application {
         classes.add(EmployeeService.class);
         classes.add(LoginService.class);
         classes.add(ObjectMapperContextResolver.class);
+        classes.add(AuthFilter.class);
 
         return classes;
     }
