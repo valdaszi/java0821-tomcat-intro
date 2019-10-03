@@ -26,7 +26,7 @@ public class EmployeeService {
      */
     @GET
     @Path("/{empNo}")
-    @Secure({"ADMIN","USER"})
+    @Secure
     public Response getEmployeeById(@PathParam("empNo") int empNo) {
         EntityManager em = null;
         try {
@@ -61,7 +61,8 @@ public class EmployeeService {
     }
 
     @POST
-    @Secure("ADMIN")
+    @Secure({"ADMIN","USER"})
+    @RolesAllowed({"ADMIN","USER"}) // dabar nieko nedaro, tik del pvz
     public Response createEmployee(Employee employee) {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();
@@ -71,7 +72,7 @@ public class EmployeeService {
     }
 
     @PUT
-    @Secure("ADMIN")
+    @Secure({"ADMIN","USER"})
     public Response updateEmployee(Employee employee) {
         EntityManager em = PersistenceUtil.getEntityManager();
         em.getTransaction().begin();

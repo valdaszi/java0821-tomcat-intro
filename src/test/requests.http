@@ -53,11 +53,14 @@ Content-Type: application/json
 }
 
 ###
+### jurgis - be roles
+### jonas - ADMIN
+### petras - USER
 
 POST http://localhost:8080/api2/login
 Content-Type: application/x-www-form-urlencoded
 
-username=Petras@firma.lt&password=123
+username=jonas@firma.lt&password=123
 
 ###
 

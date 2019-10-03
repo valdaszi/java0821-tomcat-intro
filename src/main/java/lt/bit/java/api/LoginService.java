@@ -4,6 +4,7 @@ import lt.bit.java.PersistenceUtil;
 import lt.bit.java.entities.Account;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import javax.annotation.security.PermitAll;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ public class LoginService {
     @Context
     HttpServletRequest request;
 
+    @PermitAll  // dabar nieko nedaro, tik del pvz
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response login(@FormParam("username") String username, @FormParam("password") String password) {
